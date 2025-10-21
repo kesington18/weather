@@ -108,7 +108,7 @@ function getUserCurrentLocation() {
             // getting city name from coordinates using reverse geocoding API
             async function processData(url) {
                 try {
-                    const response = await fetch(REVERSE_GEOCODING_URL);
+                    const response = await fetch(url);
                     const data = await response.json();
                     const { name } = data[0];
                     getWeatherDetails(name, latitude, longitude)
