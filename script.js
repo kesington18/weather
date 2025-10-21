@@ -70,29 +70,33 @@ const createWeatherCard = (cityName, weatherItem, index) => {
     const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const forecastDate = new Date(weatherItem.dt_txt);
     // console.log(forecastDate)
-    const today = new Date().getDay();
 
     const dayName = daysOfTheWeek[forecastDate.getDay()];
+
+    const { icon, description} = weatherItem.weather[0];
+    const {speed} = weatherItem.wind;
+    const { humidity } = weatherItem.main;
+
 
     if (index === 0) {
         return `<div class="details col-span-1 grid p-2">
                 <h2>${cityName} Now</h2>
                 <h4 class="text-3xl font-bold">${(weatherItem.main.temp - 273.15).toFixed(2)}°C</h4>
-                <h4>Wind: ${weatherItem.wind.speed} M/S</h4>
-                <h4>Humidity: ${weatherItem.main.humidity} %</h4>
+                <h4>Wind: ${speed} M/S</h4>
+                <h4>Humidity: ${humidity} %</h4>
             </div>
             <div class="icons col-span-1 flex flex-col justify-between text-center">
-                <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" class="m-auto" alt="weather-icon">
-                <h4 class="font-semibold">${weatherItem.weather[0].description}</h4>
+                <img src="https://openweathermap.org/img/wn/${icon}@4x.png" class="m-auto" alt="weather-icon">
+                <h4 class="font-semibold">${description}</h4>
             </div>`
     } else {
         return `<div class="card border-2 border-pink-600 text-center bg-sky-600 text-white py-2">
                 <h3 class="text-xl font-semibold">${dayName}</h3>
-                <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" class="m-auto"  alt="weather-icon">
-                <h4 class="pb-2 text-l font-semibold">${weatherItem.weather[0].description}</h4>
+                <img src="https://openweathermap.org/img/wn/${icon}@2x.png" class="m-auto"  alt="weather-icon">
+                <h4 class="pb-2 text-l font-semibold">${description}</h4>
                 <h4>Temp: ${(weatherItem.main.temp - 273.15).toFixed(2)}°C</h4>
-                <h4>Wind: ${weatherItem.wind.speed} M/S</h4>
-                <h4>Humidity: ${weatherItem.main.humidity}%</h4>
+                <h4>Wind: ${speed} M/S</h4>
+                <h4>Humidity: ${humidity}%</h4>
             </div>`   
     }
 }
