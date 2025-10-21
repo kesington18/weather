@@ -24,7 +24,7 @@ async function getCityCoordinates() {
 
         const {name, lat, lon} = data[0]
         getWeatherDetails(name, lat, lon);
-        console.log(name, lat, lon)
+        // console.log(name, lat, lon)
     } catch (error) {
         alert(error)
     }
@@ -75,7 +75,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
     const dayName = daysOfTheWeek[forecastDate.getDay()];
 
     if (index === 0) {
-        return `<div class="details col-span-1 grid gap-2 p-2">
+        return `<div class="details col-span-1 grid p-2">
                 <h2>${cityName} Now</h2>
                 <h4 class="text-3xl font-bold">${(weatherItem.main.temp - 273.15).toFixed(2)}°C</h4>
                 <h4>Wind: ${weatherItem.wind.speed} M/S</h4>
@@ -97,4 +97,35 @@ const createWeatherCard = (cityName, weatherItem, index) => {
     }
 }
 
-locationButton.addEventListener("click", getCityCoordinates)
+function getUserCurrentLocation() {
+    navigator.geolocation.watchPosition(
+        position => {
+            const { latitude, longitude } = position.coords;
+            const REVERSE_GEOCODING_URL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
+            // console.log(position)
+
+
+            // getting city name from coordinates using reverse geocoding API
+            async function processData(url) {
+                try {
+                    const response = await fetch(REVERSE_GEOCODING_URL);
+                    const data = await response.json();
+                    const { name } = data[0];
+                    getWeatherDetails(name, latitude, longitude)
+                    // console.log(data)
+                } catch (error) {
+                    alert(error);
+                }
+            };
+
+            processData(REVERSE_GEOCODING_URL)
+        },
+        error => {
+            // console.log(error)
+            alert(error)
+        }
+    )
+}
+
+locationButton.addEventListener("click", getCityCoordinates);
+document.addEventListener("DOMContentLoaded", getUserCurrentLocation)
