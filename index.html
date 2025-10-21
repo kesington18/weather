@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Weather Api</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-2  flex flex-col  max-w-full h-full  border-2 border-indigo-600">
+    <nav class="text-center text-4xl w-xl font-bold text-white p-2 bg-sky-600">
+        Weather Forecast
+    </nav>
+
+    <header class="grid grid-cols-1 gap-2 sm:grid-cols-2 mt-2 h-110 sm:h-60">
+        <div class="input-fields col-span-1 border-red-400 border-2 flex flex-col items-center justify-center h-full gap-4 px-0 sm:px-2 mb-2 sm:mb-0">
+            <h1 class="text-left w-full font-semibold text-xl">Enter A City</h1>
+            <input type="text" class="city-input border-2 border-green-400 w-full p-2" placeholder="E.g., New York, London, Tokyo">
+            <button class="location-btn w-full p-2 bg-sky-600 text-white hover:bg-sky-700 outline-none border-none">Search</button>
+        </div>
+        <div class="current-weather bg-sky-600 text-white col-span-1 border-pink-400 border-2 grid grid-cols-2">
+            <div class="details col-span-1 grid gap-2 p-2">
+                <h2>Sunday</h2>
+                <h4 class="text-3xl font-bold">28°C</h4>
+                <h4>Wind: __ M/S</h4>
+                <h4>Humidity: __ %</h4>
+            </div>
+        </div>
+    </header>
+
+    <main class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5 border-yellow-700 border-2 mt-4">
+        <div class="card border-2 border-pink-600 text-center bg-sky-600 text-white">
+            <h3>( ______ )</h3>
+            <img src="https://openweathermap.org/img/wn/10d@2x.png" class="m-auto"  alt="weather-icon">
+            <h4>rain</h4>
+            <h4>Temp: __°C</h4>
+            <h4>Wind: __ M/S</h4>
+            <h4>Humidity: __%</h4>
+        </div>
+        <div class="card border-2 border-pink-600 text-center bg-sky-600 text-white">
+            <h3>( ______ )</h3>
+            <img src="https://openweathermap.org/img/wn/10d@2x.png" class="m-auto" alt="weather-icon">
+            <h4>rain</h4>
+            <h4>Temp: __°C</h4>
+            <h4>Wind: __ M/S</h4>
+            <h4>Humidity: __%</h4>
+        </div>
+        <div class="card border-2 border-pink-600 text-center bg-sky-600 text-white">
+            <h3>( ______ )</h3>
+            <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" class="m-auto">
+            <h4>rain</h4>
+            <h4>Temp: __°C</h4>
+            <h4>Wind: __ M/S</h4>
+            <h4>Humidity: __%</h4>
+        </div>
+        <div class="card border-2 border-pink-600 text-center bg-sky-600 text-white">
+            <h3>( ______ )</h3>
+            <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" class="m-auto">
+            <h4>rain</h4>
+            <h4>Temp: __°C</h4>
+            <h4>Wind: __ M/S</h4>
+            <h4>Humidity: __%</h4>
+        </div>
+        <div class="card border-2 border-pink-600 text-center bg-sky-600 text-white">
+            <h3>( ______ )</h3>
+            <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" class="m-auto">
+            <h4>rain</h4>
+            <h4>Temp: __°C</h4>
+            <h4>Wind: __ M/S</h4>
+            <h4>Humidity: __%</h4>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
