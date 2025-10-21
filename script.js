@@ -82,13 +82,13 @@ const createWeatherCard = (cityName, weatherItem, index) => {
                 <h4>Humidity: ${weatherItem.main.humidity} %</h4>
             </div>
             <div class="icons col-span-1 flex flex-col justify-between text-center">
-                <img src="http://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" class="m-auto" alt="weather-icon">
+                <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" class="m-auto" alt="weather-icon">
                 <h4 class="font-semibold">${weatherItem.weather[0].description}</h4>
             </div>`
     } else {
         return `<div class="card border-2 border-pink-600 text-center bg-sky-600 text-white py-2">
                 <h3 class="text-xl font-semibold">${dayName}</h3>
-                <img src="http://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" class="m-auto"  alt="weather-icon">
+                <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png" class="m-auto"  alt="weather-icon">
                 <h4 class="pb-2 text-l font-semibold">${weatherItem.weather[0].description}</h4>
                 <h4>Temp: ${(weatherItem.main.temp - 273.15).toFixed(2)}°C</h4>
                 <h4>Wind: ${weatherItem.wind.speed} M/S</h4>
@@ -98,7 +98,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
 }
 
 function getUserCurrentLocation() {
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
         position => {
             const { latitude, longitude } = position.coords;
             const REVERSE_GEOCODING_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
