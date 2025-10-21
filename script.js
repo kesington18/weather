@@ -5,7 +5,7 @@ const FutureWeatherCards = document.querySelector("main");
 
 const API_KEY = "3da5b07faee1bcb1ec9587454037859f";
 
-
+// 
 async function getCityCoordinates() {
     const cityName = cityInput.value.trim();
     if(!cityName) return;
