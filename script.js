@@ -90,7 +90,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
                 <h4 class="font-semibold">${description}</h4>
             </div>`
     } else {
-        return `<div class="card border-2 border-pink-600 text-center bg-sky-600 text-white py-2">
+        return `<div class="card text-center bg-sky-600 text-white py-2">
                 <h3 class="text-xl font-semibold">${dayName}</h3>
                 <img src="https://openweathermap.org/img/wn/${icon}@2x.png" class="m-auto"  alt="weather-icon">
                 <h4 class="pb-2 text-l font-semibold">${description}</h4>
@@ -116,7 +116,7 @@ function getUserCurrentLocation() {
                     const data = await response.json();
                     const { name } = data[0];
                     getWeatherDetails(name, latitude, longitude)
-                    // console.log(data)
+                    console.log(name)
                 } catch (error) {
                     alert(error);
                 }
