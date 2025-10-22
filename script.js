@@ -169,4 +169,4 @@ function getUserCurrentLocation() {
 
 locationButton.addEventListener("click", getCityCoordinates);
 document.addEventListener("DOMContentLoaded", getUserCurrentLocation)
-cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates)
+cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates())
