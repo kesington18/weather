@@ -5,11 +5,32 @@ const FutureWeatherCards = document.querySelector("main");
 
 const API_KEY = "3da5b07faee1bcb1ec9587454037859f";
 
+// loader 
+const loader = document.getElementById("loader");
+
+function showLoader() {
+  loader.classList.remove("hidden");
+  setTimeout(() => {
+    loader.classList.remove("opacity-0");
+  }, 10); // tiny delay to trigger transition
+}
+
+function hideLoader() {
+  loader.classList.add("opacity-0");
+  setTimeout(() => {
+    loader.classList.add("hidden");
+  }, 500); // match transition duration (0.5s)
+}
+
+
+
 // 
 async function getCityCoordinates() {
     const cityName = cityInput.value.trim();
     if(!cityName) return;
 
+    // show loader
+    showLoader();
 
     try {
         const GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
@@ -27,10 +48,16 @@ async function getCityCoordinates() {
         // console.log(name, lat, lon)
     } catch (error) {
         alert(error)
+    } finally {
+        // hide loader
+        hideLoader();
     }
 }
 
 async function getWeatherDetails(cityName, lat, lon) {
+    // show loader
+    showLoader();
+
     const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
     try {
@@ -62,7 +89,10 @@ async function getWeatherDetails(cityName, lat, lon) {
         });
     } catch (error) {
         alert(error)
-    }    
+    } finally {
+        // hide loader
+        hideLoader();
+    }
 }
 
 const createWeatherCard = (cityName, weatherItem, index) => {
@@ -102,6 +132,9 @@ const createWeatherCard = (cityName, weatherItem, index) => {
 }
 
 function getUserCurrentLocation() {
+    // show loader
+    showLoader();
+
     navigator.geolocation.getCurrentPosition(
         position => {
             const { latitude, longitude } = position.coords;
@@ -125,6 +158,9 @@ function getUserCurrentLocation() {
             processData(REVERSE_GEOCODING_URL)
         },
         error => {
+            // hide loader
+            hideLoader()
+            
             // console.log(error)
             alert(error)
         }
