@@ -160,7 +160,7 @@ function getUserCurrentLocation() {
         error => {
             // hide loader
             hideLoader()
-            
+
             // console.log(error)
             alert(error)
         }
@@ -169,3 +169,4 @@ function getUserCurrentLocation() {
 
 locationButton.addEventListener("click", getCityCoordinates);
 document.addEventListener("DOMContentLoaded", getUserCurrentLocation)
+cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates)
