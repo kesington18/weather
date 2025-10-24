@@ -24,7 +24,7 @@ function hideLoader() {
 
 
 
-// 
+// getting city coordinates from city name
 async function getCityCoordinates() {
     const cityName = cityInput.value.trim();
     if(!cityName) return;
@@ -54,6 +54,7 @@ async function getCityCoordinates() {
     }
 }
 
+// getting weather details from city coordinates
 async function getWeatherDetails(cityName, lat, lon) {
     // show loader
     showLoader();
@@ -95,6 +96,7 @@ async function getWeatherDetails(cityName, lat, lon) {
     }
 }
 
+// creating the weather card
 const createWeatherCard = (cityName, weatherItem, index) => {
     // console.log(weatherItem)
     const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -131,6 +133,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
     }
 }
 
+// getting user's current location
 function getUserCurrentLocation() {
     // show loader
     showLoader();
@@ -167,6 +170,7 @@ function getUserCurrentLocation() {
     )
 }
 
+// event listeners
 locationButton.addEventListener("click", getCityCoordinates);
 document.addEventListener("DOMContentLoaded", getUserCurrentLocation)
 cityInput.addEventListener("keyup", e => e.key === "Enter" && getCityCoordinates())
