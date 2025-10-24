@@ -165,7 +165,7 @@ function getUserCurrentLocation() {
                     const data = await response.json();
                     const { name } = data[0];
                     getWeatherDetails(name, latitude, longitude)
-                    console.log(name)
+                    // console.log(name)
                 } catch (error) {
                     alert(error);
                 }
