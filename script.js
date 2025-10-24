@@ -67,9 +67,15 @@ async function getWeatherDetails(cityName, lat, lon) {
         // console.log(data)
 
         const uniqueForecastDays = [];
+
+        // filtering weather data for 5 days (one entry per day)
         const fiveDaysForecast = data.list.filter((forecast) => {
             // console.log(forecast.dt_txt)
+
+            // extract date part from dt_txt
             const forecastDate = forecast.dt_txt.split(" ")[0];
+
+            // filtering unique days
             if (!uniqueForecastDays.includes(forecastDate)) {
                 return uniqueForecastDays.push(forecastDate);
             };
@@ -81,10 +87,11 @@ async function getWeatherDetails(cityName, lat, lon) {
         currentWeatherCard.innerHTML = ""
         FutureWeatherCards.innerHTML =""
 
+        // creating weather cards
         fiveDaysForecast.forEach((weatherItem, index) => {
-            if (index === 0) {
+            if (index === 0) { // current weather card
                 currentWeatherCard.insertAdjacentHTML("beforeend",createWeatherCard(cityName, weatherItem, index))
-            } else {
+            } else { // future weather cards
                 FutureWeatherCards.insertAdjacentHTML("beforeend",createWeatherCard(cityName, weatherItem, index))
             }
         });
@@ -99,10 +106,15 @@ async function getWeatherDetails(cityName, lat, lon) {
 // creating the weather card
 const createWeatherCard = (cityName, weatherItem, index) => {
     // console.log(weatherItem)
+
+    // getting day name from dt_txt
     const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    // extract date part from dt_txt
     const forecastDate = new Date(weatherItem.dt_txt);
     // console.log(forecastDate)
 
+    // get day name
     const dayName = daysOfTheWeek[forecastDate.getDay()];
 
     const { icon, description} = weatherItem.weather[0];
