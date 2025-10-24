@@ -74,6 +74,7 @@ async function getWeatherDetails(cityName, lat, lon) {
 
             // extract date part from dt_txt
             const forecastDate = forecast.dt_txt.split(" ")[0];
+            // console.log(forecastDate)
 
             // filtering unique days
             if (!uniqueForecastDays.includes(forecastDate)) {
