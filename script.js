@@ -69,7 +69,7 @@ async function getWeatherDetails(cityName, lat, lon) {
         const uniqueForecastDays = [];
         const fiveDaysForecast = data.list.filter((forecast) => {
             // console.log(forecast.dt_txt)
-            const forecastDate = new Date(forecast.dt_txt).getDay();
+            const forecastDate = forecast.dt_txt.split(" ")[0];
             if (!uniqueForecastDays.includes(forecastDate)) {
                 return uniqueForecastDays.push(forecastDate);
             };
